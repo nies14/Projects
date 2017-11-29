@@ -1,0 +1,63 @@
+﻿@model IEnumerable<TutorSeekerEntity.TutorAdvertise>
+
+@{
+    Layout = "~/Views/Shared/TutorLayout.cshtml";
+}
+
+<ul class="breadcrumb" style="font-size:15px;color:#000;">
+    <li><a href="~/Home"><i class="fa fa-dashboard  fa-fw"></i>Home</a></li>
+    <li><a href="~/Seeker">Seeker</a></li>
+    <li class="active">Show Add</li>
+    <hr class="subheaderHr" />
+</ul>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <span style="color:#000;transition: 1s;-webkit-transition: 1s;"><strong>@Session["TutorName"]</strong>'s All Post Advertise information </span>
+                   
+                </div>
+                <div class="panel-body">
+                    <table class="table table-condensed" border="1">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TutorName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TutorSubject)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TutorArea)
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TutorName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TutorSubject)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TutorArea)
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("DeleteAdvertise", "Tutor",new { id = item.TutorAdvertiseId})"><i class="glyphicon glyphicon-trash"></i></a>
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section username{
+    @Session["TutorName"]
+}

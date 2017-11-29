@@ -1,0 +1,125 @@
+﻿@model IEnumerable<TutorSeekerEntity.Tutor>
+
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<ul class="breadcrumb" style="font-size:15px;color:#000;">
+    <li><a href="~/Home"><i class="fa fa-dashboard  fa-fw"></i>Home</a></li>
+    <li><a href="~/Admin">Admin</a></li>
+    <li class="active">Tutor List </li>
+    <hr class="subheaderHr" />
+</ul>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-md-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <strong>Tutor List</strong>
+                     
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-condensed">
+                            <tr>
+                                <th>
+                                   Name
+                                </th>
+                                <th>
+                                    Email
+                                </th>
+                                <th>
+                                    Contact
+                                </th>
+                                <th>
+                                    Gender
+                                </th>
+                                <th>
+                                   Institute
+                                </th>
+                                <th>
+                                   Department
+                                </th>
+                                <th>
+                                  Location
+                                </th>
+                                <th>
+                                    Class
+                                </th>
+                                <th>
+                                   Subject
+                                </th>
+                                <th>
+                                   Photo
+                                </th>
+                                <th>
+                                    Rating
+                                </th>
+                                <th></th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TutorName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TutorEmail)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TutorPhone)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TutorGender)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TutorInstitute)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TutorDepartment)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TutorLocation)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TutorPreferedClass)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TutorPreferedSubject)
+                                    </td>
+                                    <td>
+                                        <img src="~//Upload/@Html.DisplayFor(modelItem => item.TutorPhoto)" height="80px;" width="80px;" />
+                                        
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TutorRatingTotal)
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @section scripts{
+        <script src="myscript.js"></script>
+        <script></script>
+    }
+
+    @section username{
+        @Session["AdminName"]
+    }
+
+
+    @section title{
+        Tutor List | Tutor Seeker
+    }
+
+
+
+

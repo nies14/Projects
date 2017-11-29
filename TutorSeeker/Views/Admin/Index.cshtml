@@ -1,0 +1,56 @@
+﻿@model IEnumerable<TutorSeekerEntity.Admin>
+
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<ul class="breadcrumb" style="font-size:15px;color:#000;">
+    <li><a href="~/Home"><i class="fa fa-dashboard  fa-fw"></i>Home</a></li>
+    <li class="active">Admin</li>
+    <hr class="subheaderHr" />
+</ul>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <strong>Admin List</strong>
+                    <a href="/Admin/Create" class="pull-right"><i class="glyphicon glyphicon-plus"></i> AddNew</a>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <tr>
+                           
+                            <th>Name</th>
+                            <th>Email</th>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                
+                                <td>@Html.DisplayFor(modelItem => item.AdminName)</td>
+                                <td>@Html.DisplayFor(modelItem => item.AdminEmail)</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="myscript.js"></script>
+    <script></script>
+}
+
+@section username{
+    @Session["AdminName"]
+}
+
+
+
+
+@section title{
+    Admin List
+}

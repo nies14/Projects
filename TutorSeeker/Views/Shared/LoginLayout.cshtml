@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@RenderSection("title", false)</title>
+
+    <script src="~/Scripts/jquery.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    @RenderSection("scripts", false)
+
+    <link href="~/Contents/bootstrap.css" rel="stylesheet" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Contents/footer.css" rel="stylesheet" />
+    @RenderSection("styles", false)
+</head>
+<body>
+
+    @RenderBody()
+
+    <p class="copyright">Copyright © TutorSeeker 2017. All right reserved.</p>
+</body>
+</html>

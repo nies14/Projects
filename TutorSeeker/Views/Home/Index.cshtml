@@ -1,0 +1,115 @@
+﻿@model IEnumerable<TutorSeekerEntity.Tutor>
+
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div style="overflow-x: hidden;overflow-y: scroll;">
+    <div class="panel panel-primary col-lg-10" style="margin-left:100px;transition: 1s;-webkit-transition: 1s;border:1px solid #808080">
+        <div class="panel-body">
+
+            <div class="card">
+                <div class="card-block">
+                    <form role="search" method="post">
+                        <div class="form-group ">
+                            <input type="text" name="SearchBox" class="searchBox" placeholder="Search" style="padding:2px 2px 2px 2px; background-color:rgba(94, 122, 136, 0.59);color:#FFF;font-size:20px;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
+
+                            <select id="Searchtype" name="Searchtype" class="form-control" style="padding:2px 2px 2px 2px; background-color:#5d7a88;color:#FFF;font-size:20px;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
+
+                                <option>Search By Location</option>
+                                <option>Search By Gender</option>
+                                <option>Search By Subject</option>
+                                <option>Search By Class</option>
+                                <option>Search By Department</option>
+                                <option>Search By University</option>
+                            </select>
+                            <button type="submit" class="searchBox" style="padding:4px 4px 4px 4px; background-color:#0a5377;color:#FFF;font-size:20px;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;border:3px solid #808080">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @foreach (var item in Model)
+    {<div class="panel panel-primary col-md-10" style="margin-left:100px;transition: 1s;-webkit-transition: 1s;">
+
+        <div class="panel-body col-md-12">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-block col-md-12">
+                        <span class="card-block col-md-12">
+                            <a href="~//Home/Details/@Html.DisplayFor(modelItem => item.TutorId)">
+                                <img class="card-text float-left col-md-2" style="margin-top: 5px;margin-bottom: 5px" src="~/Upload/@Html.DisplayFor(modelItem => item.TutorPhoto)" height="120px" width="120px" />
+                                <h2 class="card-text good-review-score float-right col-md-9">
+                                    @Html.DisplayFor(modelItem => item.TutorName)
+                                </h2>
+                            </a>
+                        </span>
+
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr class="active">
+                                    <th>Institute:&emsp; @Html.DisplayFor(modelItem => item.TutorInstitute)</th>
+                                    <th>Department:&emsp;@Html.DisplayFor(modelItem => item.TutorDepartment)</th>
+                                </tr>
+                                <tr class="info">
+                                    <th>Contact:&emsp;@Html.DisplayFor(modelItem => item.TutorPhone)</th>
+                                    <th>Email:&emsp;@Html.DisplayFor(modelItem => item.TutorEmail)</th>
+                                    <th>Gender:&emsp; @Html.DisplayFor(modelItem => item.TutorGender)</th>
+                                </tr>
+                                <tr class="success">
+                                    <th>Preferred Location:&emsp; @Html.DisplayFor(modelItem => item.TutorLocation)</th>
+                                    <th>Preferred Class:&emsp; @Html.DisplayFor(modelItem => item.TutorPreferedClass)</th>
+                                    <th>Preferred Subject:&emsp; @Html.DisplayFor(modelItem => item.TutorPreferedSubject)</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    }
+</div>
+@section GoToDashboard{
+    @if (Session["SeekerName"] != null)
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="~//Seeker/index/@Session["Seekerid"]">
+                    <i class="glyphicon glyphicon-dashboard"></i> @Session["SeekerName"]'s DashBoard
+                </a>
+            </li>
+        </ul>
+    }
+    else if (Session["TutorName"] != null)
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="~//Tutor/index/@Session["Tutorid"]">
+                    <i class="glyphicon glyphicon-dashboard"></i> @Session["TutorName"]'s DashBoard
+                </a>
+            </li>
+        </ul>
+    }
+    else
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="glyphicon glyphicon-log-in"></i> Login Your Account
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="@Url.Action("index", "seeker")">as a Seeker</a></li>
+                    <li><a href="@Url.Action("index", "tutor")"> as a Tutor</a></li>
+                </ul>
+            </li>
+        </ul>
+    }
+}
+@section styles{
+    <link href="~/Contents/CardStyle.css" rel="stylesheet" />
+}

@@ -1,0 +1,150 @@
+﻿@model TutorSeekerEntity.Tutor
+
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <span style="color:#000;transition: 1s;-webkit-transition: 1s;"><strong>@Html.DisplayFor(model => model.TutorName)</strong>'s information </span>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-condensed" border="1">
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.TutorName)</td>
+                            <td>@Html.DisplayFor(model => model.TutorName)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.TutorEmail)</td>
+                            <td>@Html.DisplayFor(model => model.TutorEmail)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.TutorPhone)</td>
+                            <td>@Html.DisplayFor(model => model.TutorPhone)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.TutorGender)</td>
+                            <td>@Html.DisplayFor(model => model.TutorGender)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.TutorInstitute)</td>
+                            <td>@Html.DisplayFor(model => model.TutorInstitute)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.TutorDepartment)</td>
+                            <td>@Html.DisplayFor(model => model.TutorDepartment)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.TutorLocation)</td>
+                            <td>@Html.DisplayFor(model => model.TutorLocation)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.TutorPreferedClass)</td>
+                            <td>@Html.DisplayFor(model => model.TutorPreferedClass)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.TutorPreferedSubject)</td>
+                            <td>@Html.DisplayFor(model => model.TutorPreferedSubject)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.TutorRatingTotal)</td>
+                            <td>
+                                @if (@Html.DisplayFor(model => model.TutorRatingTotal).ToString() == "NaN")
+                                {
+                                    <span>0.0</span>
+                                }
+                                else
+                                {
+                                    @Html.DisplayFor(model => model.TutorRatingTotal)
+                                }
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.TutorPhoto)</td>
+                            <td><img src="~//Upload/@Html.DisplayFor(model => model.TutorPhoto)" height="120px;" width="120px;" /></td>
+                        </tr>
+                    </table>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            <h4>Rating Record</h4>
+                            <hr />
+                            <div class="form-group">
+
+                                <div class="col-md-5">
+
+                                    <select id="RatingValue" name="RatingValue" class="form-control" style="padding:2px 2px 2px 2px; background-color:#782a54;color:#FFF;font-size:20px;font-family:'Times New Roman', Times, serif">
+
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
+                                <input type="submit" value="Give Rating" class="btn btn-primary" />
+                            </div>
+
+                            <div class="form-group">
+
+                                <div class="col-md-2">
+                                    <input type="hidden" name="RatingBox" value="@Html.DisplayFor(model => model.TutorId)">
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section GoToDashboard{
+    @if (Session["SeekerName"] != null)
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="~//Seeker/index/@Session["Seekerid"]">
+                    <i class="glyphicon glyphicon-dashboard"></i> @Session["SeekerName"]'s DashBoard
+                </a>
+            </li>
+        </ul>
+    }
+    else if (Session["TutorName"] != null)
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="~//Tutor/index/@Session["Tutorid"]">
+                    <i class="glyphicon glyphicon-dashboard"></i> @Session["TutorName"]'s DashBoard
+                </a>
+            </li>
+        </ul>
+    }
+    else
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="glyphicon glyphicon-log-in"></i> Login Your Account
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="@Url.Action("index", "seeker")">as a Seeker</a></li>
+                    <li><a href="@Url.Action("index", "tutor")"> as a Tutor</a></li>
+                </ul>
+            </li>
+        </ul>
+    }
+}

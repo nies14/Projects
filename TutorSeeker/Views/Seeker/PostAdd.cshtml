@@ -1,0 +1,54 @@
+﻿@model TutorSeekerEntity.SeekerAdvertise
+
+@{
+    Layout = "~/Views/Shared/SeekerLayout.cshtml";
+}
+
+<ul class="breadcrumb" style="font-size:15px;color:#000;">
+    <li><a href="~/Home"><i class="fa fa-dashboard  fa-fw"></i>Home</a></li>
+    <li><a href="~/Seeker">Seeker</a></li>
+    <li class="active">PostAdd</li>
+    <hr class="subheaderHr" />
+</ul>
+    @using (Html.BeginForm()) 
+    {
+        @Html.AntiForgeryToken()
+        
+        <div class="form-horizontal">
+           
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.SeekerName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.SeekerName, new { htmlAttributes = new { @class = "form-control",@Value = Session["SeekerName"], @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.SeekerName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.SeekerSubject, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.SeekerSubject, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SeekerSubject, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.SeekerArea, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.SeekerArea, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SeekerArea, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-7">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+    
+@section username{
+    @Session["SeekerName"]
+}

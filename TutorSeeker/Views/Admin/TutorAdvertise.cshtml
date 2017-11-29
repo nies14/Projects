@@ -1,0 +1,70 @@
+﻿@model IEnumerable<TutorSeekerEntity.TutorAdvertise>
+
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<ul class="breadcrumb" style="font-size:15px;color:#000;">
+    <li><a href="~/Home"><i class="fa fa-dashboard  fa-fw"></i>Home</a></li>
+    <li><a href="~/Admin">Admin</a></li>
+    <li class="active">Tutor Advertise</li>
+    <hr class="subheaderHr" />
+</ul>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <strong>Tutor Advertise</strong>
+                   
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TutorName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TutorSubject)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TutorArea)
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TutorName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TutorSubject)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TutorArea)
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="myscript.js"></script>
+    <script></script>
+}
+
+@section username{
+    @Session["AdminName"]
+}
+
+
+@section title{
+    Tutor Advertise List | Tutor Seeker
+}

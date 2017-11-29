@@ -1,0 +1,89 @@
+﻿@model TutorSeekerEntity.Tutor
+
+@{
+    Layout = "~/Views/Shared/TutorLayout.cshtml";
+}
+<ul class="breadcrumb" style="font-size:15px;color:#000;">
+    <li><a href="~/Home"><i class="fa fa-dashboard  fa-fw"></i>Home</a></li>
+    <li><a href="~/Tutor">Tutor</a></li>
+    <li class="active">Index</li>
+    <hr class="subheaderHr" />
+</ul>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <span style="color:#000;transition: 1s;-webkit-transition: 1s;"><strong>@Html.DisplayFor(model => model.TutorName)</strong>'s information </span>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-condensed" border="1">
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.TutorName)</td>
+                            <td>@Html.DisplayFor(model => model.TutorName)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.TutorEmail)</td>
+                            <td>@Html.DisplayFor(model => model.TutorEmail)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.TutorPhone)</td>
+                            <td>@Html.DisplayFor(model => model.TutorPhone)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.TutorGender)</td>
+                            <td>@Html.DisplayFor(model => model.TutorGender)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.TutorInstitute)</td>
+                            <td>@Html.DisplayFor(model => model.TutorInstitute)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.TutorDepartment)</td>
+                            <td>@Html.DisplayFor(model => model.TutorDepartment)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.TutorLocation)</td>
+                            <td>@Html.DisplayFor(model => model.TutorLocation)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.TutorPreferedClass)</td>
+                            <td>@Html.DisplayFor(model => model.TutorPreferedClass)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.TutorPreferedSubject)</td>
+                            <td>@Html.DisplayFor(model => model.TutorPreferedSubject)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.TutorRatingTotal)</td>
+                            <td>
+                                @if (@Html.DisplayFor(model => model.TutorRatingTotal).ToString() == "NaN")
+                            {
+                                <span>0.0</span>
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(model => model.TutorRatingTotal)
+                            }
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.TutorPhoto)</td>
+                        <td><img src="~//Upload/@Html.DisplayFor(model => model.TutorPhoto)" height="120px;" width="120px;" /></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+@section username{
+    @Session["TutorName"]
+}

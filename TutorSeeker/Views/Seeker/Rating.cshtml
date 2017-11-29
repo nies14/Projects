@@ -1,0 +1,34 @@
+﻿@model TutorSeekerEntity.RatingRecord
+
+@{
+    ViewBag.Title = "Rating";
+    Layout = "~/Views/Shared/SeekerLayout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+        <br />    <br />    <br />
+        <div class="alert alert-dismissible alert-success col-lg-9" style="margin-left:150px;">
+            <a href="~/Home/index" class="close" data-dismiss="alert" style="color:#000000;font-size:25px;">&times;</a>
+            <span style="color:#000000"><strong >Give Rating</strong>?</span>
+            <div class="form-horizontal">
+                <hr />
+                <div class="form-group" style="padding-left:100px;">
+                    <h1 style="color:#554a29"> Are you want to give @ViewBag.RatingValue rating to @ViewBag.TutorName ?</h1>
+                    <div class="col-md-10">
+                        <input type="hidden" name="TutorName" value="@ViewBag.TutorName">
+                        <input type="hidden" name="SeekerName" value="@Session["SeekerName"]">
+                        <input type="hidden" name="RatingValue" value="@ViewBag.RatingValue">
+                        <input type="submit" value="Yes" class="btn btn-success" />
+                        <a href="~/Home/index" class="btn btn-danger">No</a>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    
+}
+

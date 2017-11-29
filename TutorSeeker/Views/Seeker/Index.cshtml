@@ -1,0 +1,51 @@
+﻿@model TutorSeekerEntity.Seeker
+
+@{
+    Layout = "~/Views/Shared/SeekerLayout.cshtml";
+}
+
+<ul class="breadcrumb" style="font-size:15px;color:#000;">
+    <li><a href="~/Home"><i class="fa fa-dashboard  fa-fw"></i>Home</a></li>
+    
+    <li class="active">Seeker</li>
+    <hr class="subheaderHr" />
+</ul>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <strong>Seeker DashBoard</strong>
+                        <a href="/Seeker/Edit/@Session["Seekerid"]" class="pull-right"><i class="glyphicon glyphicon-edit"></i> Update Profile</a>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-condensed" border="1">
+                           
+           
+                            <tr>
+                                <td>@Html.DisplayNameFor(model => model.SeekerName)</td>
+                                <td>@Html.DisplayFor(model => model.SeekerName)</td>
+                            </tr>
+                            <tr>
+                                <td>@Html.DisplayNameFor(model => model.SeekerPassword)</td>
+                                <td>@Html.DisplayFor(model => model.SeekerPassword)</td>
+                            </tr>
+                            <tr>
+                                <td>@Html.DisplayNameFor(model => model.SeekerEmail)</td>
+                                <td>@Html.DisplayFor(model => model.SeekerEmail)</td>
+                            </tr>
+                            <tr>
+                                <td>@Html.DisplayNameFor(model => model.SeekerPhoto)</td>
+                                <td><img src="~//Upload/@Html.DisplayFor(model => model.SeekerPhoto)" height="120px;" width="120px;" /></td>
+                            </tr>
+                           
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@section username{
+   @Session["SeekerName"]
+}

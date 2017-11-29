@@ -1,0 +1,135 @@
+﻿@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<ul class="breadcrumb" style="font-size:15px;color:#000;">
+    <li><a href="~/Home"><i class="fa fa-dashboard  fa-fw"></i>Home</a></li>
+
+    <li class="active">About</li>
+    <hr class="subheaderHr" />
+</ul>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-info">
+
+                <div class="panel-heading">
+                    <span style="color:#000;transition: 1s;-webkit-transition: 1s;">About </span>
+                </div>
+                <div class="panel-body">
+
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                        Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque pen
+                        atibus et magnis dis parturient montes, nascetur ridiculus mus.
+                        Donec quam felis, ultricies nec,
+                        pellentesque eu, pretium quis, sem. Nulla consequat massa
+                        quis enim. Donec pede justo, fringilla vel, aliquet nec,
+                        vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a,
+                        venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.
+                        Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi.
+                        Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu,
+                        consequat vitae, eleifend ac, enim.
+                    </p>
+                    <p>
+                        Aliquam lorem ante, dapibus in, viverra quis, feugiat a,
+                        tellus. Phasellus viverra nulla ut metus varius laoreet.
+                        Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel
+                        augue. Curabitur ullamcorper ultricies nisi. Nam eget dui.
+                        Etiam rhoncus. Maecenas tempus, tellus eget condimentum rh
+                        oncus, sem quam semper libero, sit amet adipiscing sem neque
+                        sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit i
+                        d, lorem. Maecenas nec odio et ante tincidunt tempus. Donec viae sapie
+                        ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci
+                        eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet n
+                        ibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum s
+                        odales, augue velit cursus nunc,
+                    </p>
+
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Collapsible Group 1</a>
+                                </h4>
+                            </div>
+                            <div id="collapse1" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Collapsible Group 2</a>
+                                </h4>
+                            </div>
+                            <div id="collapse2" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Collapsible Group 3</a>
+                                </h4>
+                            </div>
+                            <div id="collapse3" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section GoToDashboard{
+    @if (Session["SeekerName"] != null)
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="~//Seeker/index/@Session["Seekerid"]">
+                    <i class="glyphicon glyphicon-dashboard"></i> @Session["SeekerName"]'s DashBoard
+                </a>
+            </li>
+        </ul>
+    }
+    else if (Session["TutorName"] != null)
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="~//Tutor/index/@Session["Tutorid"]">
+                    <i class="glyphicon glyphicon-dashboard"></i> @Session["TutorName"]'s DashBoard
+                </a>
+            </li>
+        </ul>
+    }
+    else
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="glyphicon glyphicon-log-in"></i> Login Your Account
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="@Url.Action("index", "seeker")">as a Seeker</a></li>
+                    <li><a href="@Url.Action("index", "tutor")"> as a Tutor</a></li>
+                </ul>
+            </li>
+        </ul>
+    }
+}
